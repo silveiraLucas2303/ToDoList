@@ -1,0 +1,38 @@
+[
+  {
+    "Id": 1,
+    "Titulo": "Concluir projeto to do list",
+    "Descricao": "Criar um design para o projeto",
+    "DataRegistro": "2026-10-25T14:46:45.4644618-03:00",
+    "Prazo": "2026-10-25T00:00:00",
+    "DataConclusao": null,
+    "Status": 2
+  },
+  {
+    "Id": 2,
+    "Titulo": "Estudar oprera\u00E7\u00F5es com numeros bin\u00E1rios",
+    "Descricao": "Entender como \u00E9 feita adi\u00E7\u00E3o e subtra\u00E7\u00E3o de n\u00FAmeros bin\u00E1rios",
+    "DataRegistro": "2026-10-25T14:47:39.8214423-03:00",
+    "Prazo": "2026-10-24T00:00:00",
+    "DataConclusao": null,
+    "Status": 2
+  },
+  {
+    "Id": 3,
+    "Titulo": "Estudar Ia",
+    "Descricao": "Praticar projetos praticos com IA",
+    "DataRegistro": "2026-10-25T15:24:19.2230317-03:00",
+    "Prazo": "2026-10-26T00:00:00",
+    "DataConclusao": null,
+    "Status": 2
+  },
+  {
+    "Id": 4,
+    "Titulo": "Estudar Geometra",
+    "Descricao": "Praticar formulas de calculo",
+    "DataRegistro": "2026-10-25T15:25:02.3930309-03:00",
+    "Prazo": "2026-10-24T00:00:00",
+    "DataConclusao": "2026-10-25T15:25:20.8329162-03:00",
+    "Status": 0
+  }
+]
