@@ -6,7 +6,7 @@
     "DataRegistro": "2026-10-25T14:46:45.4644618-03:00",
     "Prazo": "2026-10-25T00:00:00",
     "DataConclusao": null,
-    "Status": 2
+    "Status": 1
   },
   {
     "Id": 2,
@@ -34,5 +34,14 @@
     "Prazo": "2026-10-24T00:00:00",
     "DataConclusao": "2026-10-25T15:25:20.8329162-03:00",
     "Status": 0
+  },
+  {
+    "Id": 5,
+    "Titulo": "Curso de excel",
+    "Descricao": "Fazer o curso de excel na funda\u00E7\u00E3o Bradesco",
+    "DataRegistro": "2026-10-26T08:51:56.9802915-03:00",
+    "Prazo": "2026-10-02T00:00:00",
+    "DataConclusao": null,
+    "Status": 2
   }
 ]

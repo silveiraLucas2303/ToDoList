@@ -10,26 +10,16 @@ using System.IO.Pipelines;
 string? readResult; //documentar a razão dessa interrogação
 string menuSelection = "";
 
-string json = "";
-bool hasJson = true;
-
 List<Tarefa> tarefas = new List<Tarefa> { };
 
-string pastaDados = @"C:\code\ToDoList\dados";
-string caminhoJson = Path.Combine(pastaDados, "tarefas.json");
-Directory.CreateDirectory(pastaDados);
-
-hasJson = File.Exists(caminhoJson);
+bool hasJson = RepositorioTarefa.procuraLista();
 
 if (hasJson)
 {
     try
     {
-        json = File.ReadAllText(caminhoJson);
 
-        tarefas =
-        JsonSerializer.Deserialize<List<Tarefa>>(json)
-        ?? new List<Tarefa>();
+        tarefas = RepositorioTarefa.lerTarefas();
     }
     catch (Exception ex)
     {
@@ -37,17 +27,11 @@ if (hasJson)
         Console.Write("Selecione enter para fechar");
         readResult = Console.ReadLine();
         return;
-
     }
 }
 else
 {
-    var opcoes = new JsonSerializerOptions
-    {
-        WriteIndented = true
-    };
-    json = JsonSerializer.Serialize(tarefas, opcoes);
-    File.WriteAllText(caminhoJson, json);
+    RepositorioTarefa.criarLista();
 }
 
 do
@@ -156,7 +140,7 @@ do
                                         }
                                     } while (readResult == "");
                                     Console.WriteLine("Titulo alterao com sucesso!");
-                                    salvarTarefas();
+                                    RepositorioTarefa.gravarTarefas(tarefas);
                                     Console.WriteLine("Selecione enter para continuar");
                                     readResult = Console.ReadLine();
                                     Console.Clear();
@@ -171,7 +155,7 @@ do
                                         {
                                             tarefa.Prazo = novaData;
                                             Console.WriteLine("Prazo alterado com sucesso!");
-                                            salvarTarefas();
+                                            RepositorioTarefa.gravarTarefas(tarefas);
                                             Console.WriteLine("Selecione enter para continuar");
 
                                         }
@@ -197,7 +181,7 @@ do
                                         }
                                     } while (readResult == "");
                                     Console.WriteLine("Descrição alterada com sucesso!");
-                                    salvarTarefas();
+                                    RepositorioTarefa.gravarTarefas(tarefas);
                                     Console.WriteLine("Selecione enter para continuar");
                                     readResult = Console.ReadLine();
                                     Console.Clear();
@@ -286,7 +270,7 @@ do
                 tarefas.Add(novaTarefa);
 
                 Console.WriteLine("\nTarefa Adicionada!\nSelecione enter para continuar");
-                salvarTarefas();
+                RepositorioTarefa.gravarTarefas(tarefas);
                 readResult = Console.ReadLine();
                 break;
             }
@@ -353,7 +337,7 @@ do
                                 tarefa.Status = novoStatus;
                                 if (tarefa.Status == Tarefa.StatusTarefa.Concluida)
                                     tarefa.DataConclusao = DateTime.Now;
-                                salvarTarefas();
+                                RepositorioTarefa.gravarTarefas(tarefas);
 
                             }
                         }
@@ -389,7 +373,7 @@ do
 
 } while (menuSelection != "5");
 
-
+/*
 void salvarTarefas()
 {
     var opcoes = new JsonSerializerOptions
@@ -402,7 +386,7 @@ void salvarTarefas()
 
     // Console.WriteLine("Tarefas Salvas!");
 }
-
+*/
 
 string alternativas(string[] frames, bool eraseConsole = false, int x = 0, int y = 0)
 {
@@ -484,12 +468,12 @@ void alerta()
         else if (tarefa.Prazo.Date == DateTime.Today && tarefa.Status != Tarefa.StatusTarefa.Concluida)
         {
             venceHoje++;
-           // Console.Write($"{venceHoje} vencem hoje!\n");
+            // Console.Write($"{venceHoje} vencem hoje!\n");
         }
     }
-    if(atrasadas > 0) Console.WriteLine($"Você tem {atrasadas} tarefa(s) atrasada(s)!");
-    if(venceHoje > 0) Console.WriteLine($"Você tem {venceHoje} tarefa(s) que vence(m) hoje!\n");
-    if(venceHoje == 0 && atrasadas == 0) Console.WriteLine($"Nenhum prazo urgente para hoje.");
+    if (atrasadas > 0) Console.WriteLine($"Você tem {atrasadas} tarefa(s) atrasada(s)!");
+    if (venceHoje > 0) Console.WriteLine($"Você tem {venceHoje} tarefa(s) que vence(m) hoje!\n");
+    if (venceHoje == 0 && atrasadas == 0) Console.WriteLine($"Nenhum prazo urgente para hoje.");
 
 
     /*
